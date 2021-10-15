@@ -74,52 +74,51 @@ module.exports = class BinarySearchTree {
     }
   }
 
-  remove(/*value*/) {
-    throw new NotImplementedError('Not implemented');
-    // this.rootValue = removeNode(this.rootValue, value);
+  remove(value) {
+    this.rootValue = removeNode(this.rootValue, value);
 
-    // function removeNode(node, value) {
-    //   if (!node) {
-    //     return null;
-    //   }
+    function removeNode(node, value) {
+      if (!node) {
+        return null;
+      }
 
-    //   if (value < node.data) {
-    //     node.left = removeNode(node.left, value);
-    //     return node;
-    //   } else if (node.data < value) {
-    //     node.right = removeNode(node.right, value);
-    //     return node;
-    //   } else {
-    //     // equal - should remove this item
-    //     if (!node.left && !node.right) {
-    //       // put null instead of item
-    //       return null;
-    //     }
+      if (value < node.data) {
+        node.left = removeNode(node.left, value);
+        return node;
+      } else if (node.data < value) {
+        node.right = removeNode(node.right, value);
+        return node;
+      } else {
+        // equal - should remove this item
+        if (!node.left && !node.right) {
+          // put null instead of item
+          return null;
+        }
 
-    //     if (!node.left) {
-    //       // set right child instead of item
-    //       node = node.right;
-    //       return node;
-    //     }
+        if (!node.left) {
+          // set right child instead of item
+          node = node.right;
+          return node;
+        }
 
-    //     if (!node.right) {
-    //       // set left child instead of item
-    //       node = node.left;
-    //       return node;
-    //     }
+        if (!node.right) {
+          // set left child instead of item
+          node = node.left;
+          return node;
+        }
 
-    //     // both children exists for this item
-    //     let minFromRight = node.right;
-    //     while (minFromRight.left) {
-    //       minFromRight = minFromRight.left;
-    //     }
-    //     node.data = minFromRight.value;
+        // both children exists for this item
+        let minFromRight = node.right;
+        while (minFromRight.left) {
+          minFromRight = minFromRight.left;
+        }
+        node.data = minFromRight.value;
 
-    //     node.right = removeNode(node.right, minFromRight.value);
+        node.right = removeNode(node.right, minFromRight.value);
 
-    //     return node;
-    //   }
-    // }
+        return node;
+      }
+    }
   }
 
   min() {
