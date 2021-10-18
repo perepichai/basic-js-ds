@@ -29,13 +29,9 @@ module.exports = class Queue {
   //   return !this.size
   // }
 
-  enqueue(item) {
-    // Create node
-    const newNode = new ListNode(item)
-    /**
-     * * If our list is empty than both our 
-     * * first item and last item is going to point the new node. 
-     */
+  enqueue(value) {
+    const newNode = new ListNode(value)
+
     if (!this.first) {
       this.first = newNode
       this.last = newNode
@@ -51,7 +47,7 @@ module.exports = class Queue {
 
     //* if our queue is empty we return null 
     if (!this.first) return null
-    const itemToBeRemoved = this.first
+    const itemToBeRemoved = this.first.value
 
     /**
      * * if both our first and last node are pointing the same item
